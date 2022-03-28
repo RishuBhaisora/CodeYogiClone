@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<SideBar/>}>
           <Route index element={<Navigate to="/lectures" />} /> 
           <Route path="assignments" element={<AssignmentList />} />
-          <Route path="lectures" element={<LecturesList />} />
+          <Route path="quiz" element={<LecturesList />} />
           <Route path="profile" element={<ProfilePage />} />  
           <Route path="assignments/:id/detail" element={<AssignmentDetailList />} />
         </Route>
