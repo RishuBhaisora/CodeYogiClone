@@ -14,7 +14,7 @@ function App() {
    <BrowserRouter>
       <Routes>
         
-          <Route path="quiz" element={<QuizPage />} />
+          <Route path="lecture" element={<QuizPage />} />
           <Route path="/" element={<SideBar/>}>
           <Route index element={<Navigate to="/lectures" />} /> 
           <Route path="assignments" element={<AssignmentList />} />
