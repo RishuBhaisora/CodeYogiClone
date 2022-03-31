@@ -7,6 +7,7 @@ import LecturesList from './LecturesList';
 import { CgProfile } from 'react-icons/cg';
 import AssignmentList from './AssignmentList';
 
+
 function SideBar() {
   return (
     <>

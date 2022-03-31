@@ -1,22 +1,23 @@
 import React from 'react';
-
+import { VscLinkExternal } from 'react-icons/vsc';
 function Lecture(props) {
   
   return (
     <div className=" p-4 m-4 bg-white space-y-4 h-fit  shadow-2xl ">
     <div className="flex flex-col ">
-    <div className="flex space-x-4  ">   
-    <h1>Lecture #{props.count}</h1>
-    <h1>{props.date}</h1>
+    <div className="flex space-x-4 font-bold text-xl ">   
+    <h1 >Lecture #{props.count} <span className="text-gray-500">{props.date}</span></h1>
+   
     </div>  
-    <h2>Duration {props.duration}</h2>
+    <h2 className="text-gray-500">Duration {props.duration}</h2>
     </div>   
-    <div className="space-y-2">
-    <ul className="pl-10 list-disc">{  props.children }</ul>
-    {props.note && <h1>Note:{props.note}</h1> }
+    <div className="space-y-4">
+    <ul className="pl-10 list-disc font-bold text-xl">{  props.children }</ul>
+    {props.note && <h1 className="text-xl font-bold">Note:{props.note}</h1> }
     </div>
-    <div className="flex pt-6 items-center justify-center">
-    <a>watch and download recordings</a>
+    <div className="flex text-lg font-bold space-x-2 text-gray-500 pt-6 items-center justify-center">
+     <VscLinkExternal/>
+    <a>Watch/Download Recording</a>
     </div>
     </div>
   );
