@@ -3,6 +3,7 @@ const lectureData=[
     id:1,
     date:"(Tue Mar 22 2022)",
     duration:"03:05:07",
+  
     topics:[" routes",
             "children", 
             "Revision of array desturcturing"],
@@ -24,7 +25,7 @@ const lectureData=[
     topics:["Improved todo app", 
             "Ask Jud", 
             "LocalStorage"],
-    note:"watch this and do assignment"
+    
   }, 
    
 ];

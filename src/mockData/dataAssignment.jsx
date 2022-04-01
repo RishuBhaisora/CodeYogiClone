@@ -1,23 +1,25 @@
 const assignmentData=[
    {
     id:0,
-    date:"(Tue Mar 28 2022)",
+    date:"( Wed Mar 30 2022)",
     dueDate:"02/5/7",
-    about:"create responsive page",
+    about:"Deploy CodeYogi app clone on Netlify",
     
-  }, 
+  },
+  
+
   {
     id:1,
-    date:"(Tue Mar 24 2022)",
+    date:"( Thu Jan 20 2022)",
     dueDate:"02/8/7",
-    about:"create webe page"
+    about:" Create your first full responsive webpage"
     
   }, 
   {
     id:2,
-    date:"(Tue Mar 4 2022)",
+    date:"(Fri Jan 2 2022)",
     dueDate:"04/3/7",
-    about:"create todo page"
+    about:"Practice responsive design"
     
   }, 
    
