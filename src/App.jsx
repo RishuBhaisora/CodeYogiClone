@@ -7,6 +7,7 @@ import NoPage from './NoPage';
 import QuizPage from './QuizPage';
 import AssignmentDetailList from './AssignmentDetailList';
 import ProfilePage from './ProfilePage';
+import UserProfileList from './UserProfileList';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="quiz" element={<QuizPage />} />
 				<Route path="/" element={<SideBar />}>
 					<Route index element={<Navigate to="/lectures" />} />
+          <Route path="students" element={<UserProfileList />} />
 					<Route path="assignments" element={<AssignmentList />} />
 					<Route path="lectures" element={<LecturesList />} />
 					<Route path="profile" element={<ProfilePage />} />
