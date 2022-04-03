@@ -19,10 +19,10 @@ token.then((response)=>{
   return(
     <>
       
-       <div class="pt-5 max-w-screen-md mx-auto ">
-      <h1 class=" text-2xl  font-bold p-2">Students-List</h1> 
+       <div className="pt-5 max-w-screen-md mx-auto ">
+      <h2 className=" text-2xl  font-bold p-2">Students-List</h2> 
       
-     <div class ="flex  flex-wrap justify-around"  >   
+     <div className ="flex  flex-wrap justify-around"  >   
   {user.map(d=><UserProfile key={d.name.first} firstName={d.name.first} lastName={ d.name.last} photo={d.picture.large} country={d.location.country}></UserProfile>)}
      <span className="w-60"></span> 
       <span className="w-60"></span>   
