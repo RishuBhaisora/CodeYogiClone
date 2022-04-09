@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Button = (props) => {
-  
+
   
   return(
     <>
-    <button onClick={props.onClick} className='p-2 bg-indigo-600 text-white border rounded-md  font-bold ' >{props.input}</button>
+    <button onClick={props.onClick} className='p-2  text-white border bg-indigo-600 rounded-md text-xl font-bold ' >{props.input}</button>
     </>
   )
   

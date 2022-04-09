@@ -1,7 +1,9 @@
 import React from 'react';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { VscLinkExternal } from 'react-icons/vsc';
+import Button from "./Button";
 function Assignment(props) {
+  
   const dueDatePassed=true;
   return (
     
@@ -23,8 +25,8 @@ function Assignment(props) {
          <div className="flex justify-between ">
            
     <div className=" p-4 flex ">
-    <div className="relative top-2 text-green-700  text-2xl"><IoIosCheckmarkCircleOutline /></div>
-    <h1 className=" text-xl font-bold m-2 text-green-700">Re-submit</h1> </div>
+    <div  className="relative top-2 text-green-700  text-2xl"><IoIosCheckmarkCircleOutline /></div>
+    <h1 className="font-bold text-xl m-2 text-green-700 ">Re-submit</h1> </div>
     <span className=" border-r-2 pl-[58px] border-gray-300"></span>  
      <div className="p-4 flex ">
       <div className="relative top-3 text-indigo-400 text-xl"><VscLinkExternal /></div>
