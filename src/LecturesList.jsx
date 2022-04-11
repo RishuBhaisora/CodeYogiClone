@@ -21,7 +21,7 @@ function LecturesList() {
   return (
     <div className="m-10 bg-gray-100 p-4 h-fit w-full rounded-md">
       <h1 className="text-2xl font-black ">Lecture List </h1>
-   { lectureData.map(d=>  <Lecture key={d.id} listLectures={d} >
+   { lectureData.map(d=>  <Lecture key={d.id}  {...d} >
     </Lecture>)}
     </div>
   );

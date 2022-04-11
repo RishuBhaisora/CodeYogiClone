@@ -12,23 +12,21 @@ const [detailsData,setData ]=React.useState([])
    
    React.useEffect(()=>{
   const token =
-    axios.get( `https://api.codeyogi.io/batches/1/assignments/:${numberParams}`,{
+    axios.get( `https://api.codeyogi.io/assignments/${numberParams}`,{
     withCredentials:true,
   });
   token.then((response)=>{
-    // setData(response.data);
+    setData(response.data);
     console.log(response.data)
   })
   },[]);
   
- 
-  const newData=detailsData.map(d=><><div className=" m-10 bg-gray-100 p-4 h-fit w-full rounded-md">
-  
-  <AssignmentDetail key={d.id} datePassed={d.datePassed} dueDate={d.dueDate} title={d.title} discription={d.discription}></AssignmentDetail></div></> );
    
   return (
  <>
-   {newData}
+  <div className=" m-10 bg-gray-100 p-4 h-fit w-full rounded-md">
+  
+  <AssignmentDetail key={detailsData.id} datePassed={true} dueDate={detailsData.due_date} title={detailsData.title} discription={detailsData.description}></AssignmentDetail></div>
  </>
    
    );
