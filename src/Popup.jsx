@@ -13,7 +13,7 @@ function Popup (props) {
       </div>
     <div className="  flex ">
     <h1 className="font-bold text-gray-500 mt-3">Submission Link </h1>
-    <input placeHolder={props.placeHolder} value={props.value} onChange={props.onChange} className="border-2  rounded-md ml-10 border-indigo-500 p-3" ></input>
+    <input placeholder={props.placeHolder} value={props.value} onChange={props.onChange} className="border-2  rounded-md ml-10 border-indigo-500 p-3" ></input>
       
       </div>
       <Button onClick={props.onSubmit}  input="submit"></Button>
