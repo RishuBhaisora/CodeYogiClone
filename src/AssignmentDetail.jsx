@@ -3,6 +3,7 @@ import { VscLinkExternal } from 'react-icons/vsc';
 import Button from  './Button'
 import Popup from "./Popup"
 import axios from "axios"
+import MDEditor from "@uiw/react-md-editor"; 
 
 function AssignmentDetail(props) {
 const [submissionLink,changeInput ]=React.useState("")  
@@ -40,7 +41,7 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
       
       <div className="flex  p-2 text-gray-400  border-b-2">
    <h1 className="flex items-center w-40">Discription</h1> 
-  <h1 > {props.discription}</h1>
+  <h1 > <MDEditor.Markdown source={props.discription}/></h1>
        
      </div>
       <div className="p-2 flex ">
