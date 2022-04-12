@@ -31,7 +31,7 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
   return (
     <>
     
-  {showPopup && <Popup placeHolder="Submission link " onPopupClose={()=>setPopup(false)} onSubmit={onSubmit} value={submissionLink} onChange={onInputChange}/>}
+  {showPopup && <Popup placeHolder="Submission link " onPopupClose={()=>setPopup(false)} assignNum={props.detailId} onSubmit={onSubmit} value={submissionLink} onChange={onInputChange}/>}
     <div className=" p-4 m-4 bg-white space-y-4   shadow-2xl grow ">
    
   <div onClick={()=>navigate(`/assignments/${props.detailId}/detail`)}>
@@ -55,7 +55,7 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
     <div  className="text-green-700 mt-2 text-2xl"><IoIosCheckmarkCircleOutline /></div>
     <div className="font-bold text-xl m-2 text-green-700 ">Re-submit</div> </div>
     <span className=" border-r-2 pl-[58px] border-gray-300"></span>  
-     <a href={submissionLink} target="blank" className="p-4 flex ">
+     <a href={props.href} target="blank" className="p-4 flex ">
       <div className="text-indigo-400 mt-3 text-xl"><VscLinkExternal /></div>
     <div className="text-xl font-bold m-2   underline text-indigo-400"> See Your Submission</div> </a> </div>
       </div> 

@@ -24,7 +24,7 @@ const [assignmentData,setData ]=React.useState([])
     
     <div className="m-10 bg-gray-100 p-4 h-fit rounded-md">
    <h1 className="text-2xl pl-3 pt-2 font-black ">Assignment List</h1>
-   { assignmentData.map(d=><Assignment  key={d.id} detailId={d.id}  count={d.id}   about={d.title} date={d.created_at} dueDate={d.due_date} >
+   { assignmentData.map(d=><Assignment key={d.id} detailId={d.id}  count={d.id} href={d.submissions[0].submission_link}  about={d.title} date={d.created_at} dueDate={d.due_date} >
      
     </Assignment>)}
      
