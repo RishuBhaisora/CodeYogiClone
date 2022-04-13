@@ -4,6 +4,7 @@ import Button from  './Button'
 import Popup from "./Popup"
 import axios from "axios"
 import MDEditor from "@uiw/react-md-editor"; 
+import {DateTime} from "luxon";
 
 function AssignmentDetail(props) {
 const [submissionLink,changeInput ]=React.useState("")  
@@ -36,12 +37,12 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
       
     <div className="flex   text-gray-400 p-2 border-b-2">
     <h1 className="w-40">Due Date</h1>
-    <h1>{props.dueDate}</h1>   
+    <h1>{DateTime.fromISO(props.dueDate).toLocaleString(DateTime.DATETIME_MED)}</h1>   
     </div>
       
       <div className="flex  p-2 text-gray-400  border-b-2">
    <h1 className="flex items-center w-40">Discription</h1> 
-  <h1 > <MDEditor.Markdown source={props.discription}/></h1>
+  <h1 > <MDEditor.Markdown className="!text-gray-400" source={props.discription}/></h1>
        
      </div>
       <div className="p-2 flex ">

@@ -10,7 +10,7 @@ const date2 = DateTime.fromISO(end_time)
 const diff = date1.diff(date2, ["hours","minutes","seconds"])
 
 const stringDue=diff.toISO()
- const duration = Duration.fromISO(stringDue).toFormat("hh mm ss") 
+ const duration = Duration.fromISO(stringDue).toFormat('hhmmss'); 
   
   const dateString=created_at
   const dateObject = DateTime.fromISO(dateString);
@@ -25,7 +25,7 @@ const stringDue=diff.toISO()
    
     </div>  
     <h1 className="text-gray-500">
-    Duration{duration}  </h1>
+    Duration {duration}  </h1>
     </div>   
     <div className="space-y-4">
     <div className="pl-10 list-disc font-bold text-xl">

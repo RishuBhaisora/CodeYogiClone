@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { VscLinkExternal } from 'react-icons/vsc';
 import axios from "axios";
-
+import {DateTime} from "luxon";
 import Popup from "./Popup"
  
 
@@ -26,7 +26,11 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
  
 };
     
- 
+  
+  const dateString=props.date;
+  const dateObject = DateTime.fromISO(dateString);
+  const dateHumanReadable=dateObject.toLocaleString(DateTime.DATETIME_MED)
+  
   const dueDatePassed=true;
   return (
     <>
@@ -35,15 +39,16 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
     <div className=" p-4 m-4 bg-white space-y-4   shadow-2xl grow ">
    
   <div onClick={()=>navigate(`/assignments/${props.detailId}/detail`)}>
-    <div className="flex text-xl font-bold  space-x-4   ">   
-    <h1 >#{props.count} {props.about}  <span className="text-gray-500">{props.date}</span></h1>
+    <div className="flex text-xl font-bold space-x-4   ">   
+    <h1 className="space-x-2">#{props.count} {props.about}  <span className="text-gray-500">({dateHumanReadable})</span></h1>
     
     </div>  
    
     
     <div className="flex justify-between  ">
     <div className="space-y-2 ">
-  <div className=" text-xl text-red-400 ">Due Date:{props.dueDate}{dueDatePassed && <h1 className="  text-red-400 ">(Submission will count as late now)</h1>}  </div>
+  <div className=" text-xl text-red-400  ">
+    <span className="mr-2">Due Date:</span>{DateTime.fromISO(props.dueDate).toLocaleString(DateTime.DATETIME_MED)}{dueDatePassed && <h1 className="  text-red-400 ">(Submission will count as late now)</h1>}  </div>
       </div> 
         <h1 className="text-green-800 font-bold text-xl">SUBMITTED</h1>  
   
