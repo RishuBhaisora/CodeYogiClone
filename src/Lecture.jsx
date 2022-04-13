@@ -1,9 +1,16 @@
 import React from 'react';
 import { VscLinkExternal } from 'react-icons/vsc';
 import MDEditor from "@uiw/react-md-editor";
-import {DateTime} from "luxon";
+import {DateTime,Duration} from "luxon";
 
-function Lecture({ created_at,href,topic,end_time,id,recording_url}) {
+function Lecture({ created_at,href,topic,start_time,end_time,id,recording_url}) {
+  const date1 = DateTime.fromISO(start_time)
+const date2 = DateTime.fromISO(end_time)
+
+const diff = date1.diff(date2, ["hours","minutes","seconds"])
+
+const stringDue=diff.toISO()
+ const duration = Duration.fromISO(stringDue).toFormat("hh mm ss") 
   
   const dateString=created_at
   const dateObject = DateTime.fromISO(dateString);
@@ -18,7 +25,7 @@ function Lecture({ created_at,href,topic,end_time,id,recording_url}) {
    
     </div>  
     <h1 className="text-gray-500">
-    Duration  </h1>
+    Duration{duration}  </h1>
     </div>   
     <div className="space-y-4">
     <div className="pl-10 list-disc font-bold text-xl">
