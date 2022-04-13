@@ -30,7 +30,7 @@ const [detailsData,setData ]=React.useState([])
  <>
   <div className=" m-10 bg-gray-100 p-4 h-fit w-full rounded-md">
   
-  <AssignmentDetail key={detailsData.id} datePassed={true} dueDate={detailsData.due_date} href={href} title={detailsData.title} discription={detailsData.description}></AssignmentDetail></div>
+  <AssignmentDetail detailId={numberParams} key={detailsData.id} datePassed={true} dueDate={detailsData.due_date} href={href} title={detailsData.title} discription={detailsData.description}></AssignmentDetail></div>
  </>
    
    );

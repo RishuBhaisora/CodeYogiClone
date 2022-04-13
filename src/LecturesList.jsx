@@ -1,10 +1,10 @@
 import React from 'react';
 import Lecture from './Lecture';
 import axios from "axios";
+import {DateTime} from "luxon";
 
  
 function LecturesList() {
-  
  const [lectureData,setData ]=React.useState([])
    React.useEffect(()=>{
   const token =

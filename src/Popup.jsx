@@ -13,7 +13,7 @@ function Popup (props) {
          <GiCancel onClick={props.onPopupClose}></GiCancel>
       </div>
     <div className="  flex ">
-    <h1 className="font-bold text-gray-500 mt-3">Submission Link Of<br/>Asssignment No.{props.assignNum} </h1>
+    <h1 className="font-bold text-gray-500 mt-3">Submission Link  </h1>
     <input placeholder={props.placeHolder} value={props.value} onChange={props.onChange} className="border-2  rounded-md ml-10 border-indigo-500 p-3" ></input>
       
       </div>

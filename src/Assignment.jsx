@@ -31,7 +31,7 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
   return (
     <>
     
-  {showPopup && <Popup placeHolder="Submission link " onPopupClose={()=>setPopup(false)} assignNum={props.detailId} onSubmit={onSubmit} value={submissionLink} onChange={onInputChange}/>}
+  {showPopup && <Popup placeHolder="Submission link " onPopupClose={()=>setPopup(false)}  onSubmit={onSubmit} value={submissionLink} onChange={onInputChange}/>}
     <div className=" p-4 m-4 bg-white space-y-4   shadow-2xl grow ">
    
   <div onClick={()=>navigate(`/assignments/${props.detailId}/detail`)}>
