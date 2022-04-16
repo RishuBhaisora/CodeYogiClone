@@ -8,7 +8,7 @@ function Popup (props) {
   let navigate=useNavigate();
   return (
     <div  className=" h-screen w-full fixed top-0 p-32 left-0 bg-opacity-75 bg-gray-500 ">
-    <div className="relative border p-3 py-8   border-black border-y-3  rounded-md bg-white">
+    <div className="relative border p-3 py-8 max-w-md mx-auto  border-black border-y-3  rounded-md bg-white">
       <div   className="absolute top-2 right-2 text-xl text-red-600">
          <GiCancel onClick={props.onPopupClose}></GiCancel>
       </div>
