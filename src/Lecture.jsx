@@ -17,7 +17,7 @@ const stringDue=diff.toISO()
   const dateHumanReadable=dateObject.toLocaleString(DateTime.DATETIME_MED)
   
   return (
-    <div className=" p-4 m-4 bg-white space-y-4 h-fit  shadow-2xl ">
+    <div className=" p-4 rounded-lg m-4 bg-white space-y-4 h-fit  shadow-2xl ">
     <div className="flex flex-col ">
     <div className="flex space-x-4 font-bold text-xl ">   
     <h1 >Lecture #{id-2} <span className="text-gray-500">
