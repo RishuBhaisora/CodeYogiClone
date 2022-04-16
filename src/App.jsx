@@ -16,7 +16,7 @@ function App() {
 				<Route path="quiz" element={<QuizPage />} />
 				<Route path="/" element={<SideBar />}>
 					<Route index element={<Navigate to="/lectures" />} />
-          <Route path="students" element={<UserProfileList />} />
+					<Route path="students" element={<UserProfileList />} />
 					<Route path="assignments" element={<AssignmentList />} />
 					<Route path="lectures" element={<LecturesList />} />
 					<Route path="profile" element={<ProfilePage />} />
