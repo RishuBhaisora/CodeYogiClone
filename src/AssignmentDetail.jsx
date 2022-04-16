@@ -8,6 +8,7 @@ import {DateTime} from "luxon";
 import { string } from 'yup';
 
 function AssignmentDetail(props) {
+ 
 const [submissionLink,changeInput ]=React.useState("");  
 const [emailError, setEmailError] = React.useState('');
 const [validEmail, setValidEmail] = React.useState(true);  
@@ -48,7 +49,7 @@ axios.put(`https://api.codeyogi.io/assignment/${props.detailId}/submit`,{submiss
  
 
    
-    <div className="flex flex-col rounded-lg p-4 m-4 bg-white space-y-4    shadow-2xl ">
+    <div className="flex flex-col rounded-lg hover:drop-shadow-2xl p-4 m-4 bg-white space-y-4    shadow-2xl ">
      {showPopup && <Popup placeHolder="Submission link "validEmail={validEmail} emailError={emailError} onPopupClose={onPopupClose} assignNum={props.detailId} onSubmit={onSubmit} value={submissionLink} onChange={onInputChange}/>}
         <h1 className="text-2xl p-2 border-b-2 font-black ">Assignment Detail</h1>
       

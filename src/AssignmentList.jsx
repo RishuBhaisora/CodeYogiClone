@@ -4,8 +4,8 @@ import axios from "axios";
 
 
 function AssignmentList(props) {
- 
-const [assignmentData,setData ]=React.useState([])
+const savedAssignments=JSON.parse(localStorage.getItem('assignments')) || []; 
+const [assignmentData,setData ]=React.useState(savedAssignments)
 
    React.useEffect(()=>{
   const token =
@@ -13,9 +13,9 @@ const [assignmentData,setData ]=React.useState([])
     withCredentials:true,
   });
   token.then((response)=>{
- //    const savedSubmissionLink=JSON.parse(localStorage.getItem('submissionLink')) || [];
- // localStorage.setItem('submissionLink', JSON.stringify(submissionLink));
+    localStorage.setItem('assignments', JSON.stringify(response.data));
     setData(response.data);
+    
     console.log(response.data)
   })
   },[]);

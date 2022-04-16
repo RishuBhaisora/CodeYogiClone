@@ -3,9 +3,13 @@ import Lecture from './Lecture';
 import axios from "axios";
 import {DateTime} from "luxon";
 
- 
+
+
 function LecturesList() {
- const [lectureData,setData ]=React.useState([])
+  
+ const savedAssignments=JSON.parse(localStorage.getItem('lectures')) || []; 
+ const [lectureData,setData ]=React.useState(savedAssignments)
+  
    React.useEffect(()=>{
   const token =
     axios.get("https://api.codeyogi.io/batches/1/sessions",{
@@ -13,6 +17,7 @@ function LecturesList() {
   });
   token.then((response)=>{
     setData(response.data);
+    localStorage.setItem('lectures', JSON.stringify(response.data));
     console.log(response.data)
   })
   },[]);

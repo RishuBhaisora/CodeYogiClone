@@ -5,8 +5,8 @@ import AssignmentDetail from './AssignmentDetail';
 
 
 function AssignmentDetailList() {
-   
-const [detailsData,setData ]=React.useState([])
+const savedAssignments=JSON.parse(localStorage.getItem('details')) || [];    
+const [detailsData,setData ]=React.useState(savedAssignments)
   const stringParams=useParams();
   const numberParams=(+stringParams.id);
 
@@ -18,6 +18,7 @@ const [detailsData,setData ]=React.useState([])
     withCredentials:true,
   });
   token.then((response)=>{
+    localStorage.setItem('details', JSON.stringify(response.data));
     setData(response.data);
     setHref(response.data.submissions[0].submission_link);
     console.log(response.data)

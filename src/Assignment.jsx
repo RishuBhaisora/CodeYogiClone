@@ -67,7 +67,7 @@ function Assignment(props) {
 					onChange={onInputChange}
 				/>
 			)}
-			<div className=" p-4 m-4 bg-white space-y-4 rounded-lg  shadow-2xl grow ">
+			<div className=" p-4 m-4 bg-white space-y-4 shadow-2xl rounded-lg  shadow-2xl grow ">
 				<div onClick={() => navigate(`/assignments/${props.detailId}/detail`)}>
 					<div className="flex text-xl font-bold space-x-4   ">
 						<h1 className="space-x-2">
