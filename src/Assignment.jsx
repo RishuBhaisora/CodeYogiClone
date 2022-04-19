@@ -6,13 +6,16 @@ import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
 import { string } from 'yup';
+import { saveData ,getSavedData,putAssignment} from "./Api";
 
 function Assignment(props) {
-	const savedSubmissionLink=JSON.parse(localStorage.getItem(`${props.detailId}`)) || [props.href];
+  
+	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
 	const [submissionLink, changeInput] = React.useState('');
 	const [emailError, setEmailError] = React.useState('');
 	const [validEmail, setValidEmail] = React.useState(true);
 	const [showPopup, setPopup] = React.useState(false);
+  
 	let navigate = useNavigate();
 
 	const onInputChange = event => {
@@ -33,12 +36,8 @@ function Assignment(props) {
 			console.log(e.message);
 			return;
 		}
-		axios.put(
-			`https://api.codeyogi.io/assignment/${props.detailId}/submit`,
-			{ submissionLink },
-			{ withCredentials: true }
-		);
-		localStorage.setItem(`${props.detailId}`, JSON.stringify(submissionLink));
+    putAssignment(props.detailId,submissionLink)
+		saveData(`${props.detailId}`,submissionLink);
 		setValidEmail(true);
 		setPopup(false);
 		changeInput('');

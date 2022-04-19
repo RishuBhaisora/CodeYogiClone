@@ -2,7 +2,7 @@ import React from 'react';
 import Lecture from './Lecture';
 import axios from "axios";
 import {DateTime} from "luxon";
-
+import {getLectures} from "./Api"
 
 
 function LecturesList() {
@@ -11,11 +11,8 @@ function LecturesList() {
  const [lectureData,setData ]=React.useState(savedAssignments)
   
    React.useEffect(()=>{
-  const token =
-    axios.get("https://api.codeyogi.io/batches/1/sessions",{
-    withCredentials:true,
-  });
-  token.then((response)=>{
+
+  getLectures.then((response)=>{
     setData(response.data);
     localStorage.setItem('lectures', JSON.stringify(response.data));
     console.log(response.data)

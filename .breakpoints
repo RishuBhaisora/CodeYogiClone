@@ -4,7 +4,7 @@
       {
         "id": "8a8fa854-f909-4017-a171-73dde6ae9077",
         "line": 12,
-        "version": 368,
+        "version": 384,
         "index": 441
       }
     ],
@@ -12,16 +12,16 @@
       {
         "id": "8041f6b5-01d0-47f1-a51a-d96b0f807e1d",
         "line": 7,
-        "version": 3296,
-        "index": 214
+        "version": 4259,
+        "index": 249
       }
     ],
     "src/Lecture.jsx": [
       {
         "id": "804c1dfe-6c26-491b-9126-d5fa436344b7",
-        "line": 8,
-        "version": 1235,
-        "index": 208
+        "line": 28,
+        "version": 2354,
+        "index": 690
       }
     ]
   }

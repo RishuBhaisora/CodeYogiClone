@@ -20,10 +20,7 @@ function App() {
 					<Route path="assignments" element={<AssignmentList />} />
 					<Route path="lectures" element={<LecturesList />} />
 					<Route path="profile" element={<ProfilePage />} />
-					<Route
-						path="assignments/:id/detail"
-						element={<AssignmentDetailList />}
-					/>
+					<Route path="assignments/:id/detail" element={<AssignmentDetailList />} />
 				</Route>
 				<Route path="*" element={<NoPage />} />
 			</Routes>
