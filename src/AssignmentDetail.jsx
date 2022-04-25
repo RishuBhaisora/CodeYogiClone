@@ -6,15 +6,15 @@ import axios from 'axios';
 import MDEditor from '@uiw/react-md-editor';
 import { DateTime } from 'luxon';
 import { string } from 'yup';
+import { saveData ,getSavedData,putAssignment} from "./Api";
 
 function AssignmentDetail(props) {
+  const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
 	const [submissionLink, changeInput] = React.useState('');
 	const [emailError, setEmailError] = React.useState('');
 	const [validEmail, setValidEmail] = React.useState(true);
 	const [showPopup, setPopup] = React.useState(false);
-	const savedSubmissionLink = JSON.parse(
-		localStorage.getItem(`${props.detailId}`)
-	) || [props.href];
+	
 
 	const onSubmit = () => {
 		const emailValidator = string().url('URL is not valid ');
@@ -26,12 +26,8 @@ function AssignmentDetail(props) {
 
 			return;
 		}
-		axios.put(
-			`https://api.codeyogi.io/assignment/${props.detailId}/submit`,
-			{ submissionLink },
-			{ withCredentials: true }
-		);
-		localStorage.setItem(`${props.detailId}`, JSON.stringify(submissionLink));
+		putAssignment(props.detailId,submissionLink)
+		saveData(`${props.detailId}`, submissionLink);
 		setValidEmail(true);
 		setPopup(false);
 		changeInput('');
@@ -51,7 +47,7 @@ function AssignmentDetail(props) {
 		changeInput('');
 	};
 	return (
-		<div className="flex flex-col rounded-lg hover:drop-shadow-2xl p-4 m-4 bg-white space-y-4    shadow-2xl ">
+		<div className="rounded-lg p-4 m-4 bg-white space-y-4    shadow-2xl ">
 			{showPopup && (
 				<Popup
 					placeHolder="Submission link "

@@ -2,23 +2,18 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import AssignmentDetail from './AssignmentDetail';
+import { saveData, getSavedData, details } from './Api';
 
 function AssignmentDetailList() {
-	const savedAssignments = JSON.parse(localStorage.getItem('details')) || [];
+	const savedAssignments = getSavedData('details') || [];
 	const [detailsData, setData] = React.useState(savedAssignments);
 	const [href, setHref] = React.useState('');
 	const stringParams = useParams();
 	const numberParams = +stringParams.id;
 
 	React.useEffect(() => {
-		const token = axios.get(
-			`https://api.codeyogi.io/assignments/${numberParams}`,
-			{
-				withCredentials: true
-			}
-		);
-		token.then(response => {
-			localStorage.setItem('details', JSON.stringify(response.data));
+		details(numberParams).then(response => {
+			saveData('details', response.data);
 			setData(response.data);
 			setHref(response.data.submissions[0].submission_link);
 			console.log(response.data);
