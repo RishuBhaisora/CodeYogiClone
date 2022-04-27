@@ -5,56 +5,35 @@ import { VscLinkExternal } from 'react-icons/vsc';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
-import { string } from 'yup';
 import { saveData, getSavedData, putAssignment } from './Api';
+import { useForm } from './urlForm';
 
 function Assignment(props) {
 	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
 
-	const [formData, setFormData] = React.useState({
-		submissionLink: '',
-		urlError: '',
-		validUrl: true,
-		showPopup: false
-	});
+	const onSubmit = event => {
+		putAssignment(props.detailId, formData.submissionLink);
+		saveData(`${props.detailId}`, formData.submissionLink);
+	};
+
+	const [
+		formData,
+		onInputChange,
+		onShowPopup,
+		onPopupClose,
+		onSubmission
+	] = useForm(
+		{
+			submissionLink: '',
+			urlError: '',
+			validUrl: true,
+			showPopup: false
+		},
+		onSubmit
+	);
 
 	let navigate = useNavigate();
 
-	const onInputChange = event => {
-		setFormData({ ...formData, submissionLink: event.target.value });
-	};
-
-	const onShowPopup = () => {
-		setFormData({ ...formData, showPopup: true });
-	};
-
-	const onSubmit = event => {
-		event.preventDefault();
-		const urlValidator = string().url('URL is not valid ');
-		try {
-			urlValidator.validateSync(formData.submissionLink);
-		} catch (e) {
-			setFormData({ ...formData, urlError: e.message, validUrl: false });
-			console.log(e.message);
-			return;
-		}
-		putAssignment(props.detailId, formData.submissionLink);
-		saveData(`${props.detailId}`, formData.submissionLink);
-		setFormData({
-			...formData,
-			submissionLink: '',
-			validUrl: true,
-			showPopup: false
-		});
-	};
-	const onPopupClose = () => {
-		setFormData({
-			...formData,
-			submissionLink: '',
-			validUrl: true,
-			showPopup: false
-		});
-	};
 	const dateString = props.date;
 	const dateObject = DateTime.fromISO(dateString);
 	const dateHumanReadable = dateObject.toLocaleString(DateTime.DATETIME_MED);
@@ -68,7 +47,7 @@ function Assignment(props) {
 					onPopupClose={onPopupClose}
 					validUrl={formData.validUrl}
 					urlError={formData.urlError}
-					onSubmit={onSubmit}
+					onSubmit={onSubmission}
 					value={formData.submissionLink}
 					onChange={onInputChange}
 				/>

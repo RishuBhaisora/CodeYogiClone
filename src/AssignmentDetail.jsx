@@ -6,59 +6,44 @@ import axios from 'axios';
 import MDEditor from '@uiw/react-md-editor';
 import { DateTime } from 'luxon';
 import { string } from 'yup';
-import { saveData ,getSavedData,putAssignment} from "./Api";
+import { saveData, getSavedData, putAssignment } from './Api';
+import { useForm } from './urlForm';
 
 function AssignmentDetail(props) {
-  const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
-	const [submissionLink, changeInput] = React.useState('');
-	const [urlError, setUrlError] = React.useState('');
-	const [validUrl, setValidUrl] = React.useState(true);
-	const [showPopup, setPopup] = React.useState(false);
-	
+	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
 
 	const onSubmit = () => {
-     event.preventDefault()
-		const urlValidator = string().url('URL is not valid ');
-		try {
-			urlValidator.validateSync(submissionLink);
-		} catch (e) {
-			setValidUrl(false);
-			setUrlError(e.message);
+		putAssignment(props.detailId, formData.submissionLink);
+		saveData(`${props.detailId}`, formData.submissionLink);
+	};
+  const [
+		formData,
+		onInputChange,
+		onShowPopup,
+		onPopupClose,
+		onSubmission
+	] = useForm(
+		{
+			submissionLink: '',
+			urlError: '',
+			validUrl: true,
+			showPopup: false
+		},
+		onSubmit
+	);
 
-			return;
-		}
-		putAssignment(props.detailId,submissionLink)
-		saveData(`${props.detailId}`, submissionLink);
-		setValidUrl(true);
-		setPopup(false);
-		changeInput('');
-	};
 
-	const onInputChange = event => {
-		changeInput(event.target.value);
-	};
-
-	const onShowPopup = () => {
-		setPopup(true);
-	};
-	const onPopupClose = () => {
-		setPopup(false);
-		setValidUrl(true);
-		setPopup(false);
-		changeInput('');
-	};
 	return (
 		<div className="rounded-lg p-4 m-4 bg-white space-y-4    shadow-2xl ">
-			{showPopup && (
-     
+			{formData.showPopup && (
 				<Popup
 					placeHolder="Submission link "
-					validUrl={validUrl}
-					urlError={urlError}
+					validUrl={formData.validUrl}
+					urlError={formData.urlError}
 					onPopupClose={onPopupClose}
 					assignNum={props.detailId}
-					onSubmit={onSubmit}
-					value={submissionLink}
+					onSubmit={onSubmission}
+					value={formData.submissionLink}
 					onChange={onInputChange}
 				/>
 			)}
