@@ -4,10 +4,10 @@ import { GiCancel } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
 
 function Popup(props) {
-	const [validEmail, setValidEmail] = React.useState();
-
+	
 	let navigate = useNavigate();
 	return (
+    <form  onSubmit={props.onSubmit}  >
 		<div className=" h-screen w-full fixed top-0 p-32 left-0 bg-opacity-75 bg-gray-500 ">
 			<div className="relative border p-3 py-8 max-w-md mx-auto  border-black border-y-3  rounded-md bg-white">
 				<div className="absolute top-2 right-2 text-xl text-red-600">
@@ -15,8 +15,8 @@ function Popup(props) {
 				</div>
 				<div className="h-5">
 					{' '}
-					{!props.validEmail && (
-						<h2 className="text-red-400">({props.emailError})</h2>
+					{!props.validUrl && (
+						<h2 className="text-red-400">({props.urlError})</h2>
 					)}
 				</div>
 				<div className="  flex ">
@@ -29,9 +29,9 @@ function Popup(props) {
 						className="border-2  rounded-md ml-10 border-indigo-500 p-3"
 					/>
 				</div>
-				<Button onClick={props.onSubmit} input="submit" />
+				<Button input="submit" />
 			</div>
-		</div>
+		</div></form>
 	);
 }
 

@@ -11,24 +11,25 @@ import { saveData ,getSavedData,putAssignment} from "./Api";
 function AssignmentDetail(props) {
   const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
 	const [submissionLink, changeInput] = React.useState('');
-	const [emailError, setEmailError] = React.useState('');
-	const [validEmail, setValidEmail] = React.useState(true);
+	const [urlError, setUrlError] = React.useState('');
+	const [validUrl, setValidUrl] = React.useState(true);
 	const [showPopup, setPopup] = React.useState(false);
 	
 
 	const onSubmit = () => {
-		const emailValidator = string().url('URL is not valid ');
+     event.preventDefault()
+		const urlValidator = string().url('URL is not valid ');
 		try {
-			emailValidator.validateSync(submissionLink);
+			urlValidator.validateSync(submissionLink);
 		} catch (e) {
-			setValidEmail(false);
-			setEmailError(e.message);
+			setValidUrl(false);
+			setUrlError(e.message);
 
 			return;
 		}
 		putAssignment(props.detailId,submissionLink)
 		saveData(`${props.detailId}`, submissionLink);
-		setValidEmail(true);
+		setValidUrl(true);
 		setPopup(false);
 		changeInput('');
 	};
@@ -42,17 +43,18 @@ function AssignmentDetail(props) {
 	};
 	const onPopupClose = () => {
 		setPopup(false);
-		setValidEmail(true);
+		setValidUrl(true);
 		setPopup(false);
 		changeInput('');
 	};
 	return (
 		<div className="rounded-lg p-4 m-4 bg-white space-y-4    shadow-2xl ">
 			{showPopup && (
+     
 				<Popup
 					placeHolder="Submission link "
-					validEmail={validEmail}
-					emailError={emailError}
+					validUrl={validUrl}
+					urlError={urlError}
 					onPopupClose={onPopupClose}
 					assignNum={props.detailId}
 					onSubmit={onSubmit}

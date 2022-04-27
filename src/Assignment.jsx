@@ -6,47 +6,54 @@ import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
 import { string } from 'yup';
-import { saveData ,getSavedData,putAssignment} from "./Api";
+import { saveData, getSavedData, putAssignment } from './Api';
 
 function Assignment(props) {
-  
 	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
-	const [submissionLink, changeInput] = React.useState('');
-	const [emailError, setEmailError] = React.useState('');
-	const [validEmail, setValidEmail] = React.useState(true);
-	const [showPopup, setPopup] = React.useState(false);
-  
+
+	const [formData, setFormData] = React.useState({
+		submissionLink: '',
+		urlError: '',
+		validUrl: true,
+		showPopup: false
+	});
+
 	let navigate = useNavigate();
 
 	const onInputChange = event => {
-		changeInput(event.target.value);
+		setFormData({ ...formData, submissionLink: event.target.value });
 	};
 
 	const onShowPopup = () => {
-		setPopup(true);
+		setFormData({ ...formData, showPopup: true });
 	};
 
-	const onSubmit = () => {
-		const emailValidator = string().url('URL is not valid ');
+	const onSubmit = event => {
+		event.preventDefault();
+		const urlValidator = string().url('URL is not valid ');
 		try {
-			emailValidator.validateSync(submissionLink);
+			urlValidator.validateSync(formData.submissionLink);
 		} catch (e) {
-			setValidEmail(false);
-			setEmailError(e.message);
+			setFormData({ ...formData, urlError: e.message, validUrl: false });
 			console.log(e.message);
 			return;
 		}
-    putAssignment(props.detailId,submissionLink)
-		saveData(`${props.detailId}`,submissionLink);
-		setValidEmail(true);
-		setPopup(false);
-		changeInput('');
+		putAssignment(props.detailId, formData.submissionLink);
+		saveData(`${props.detailId}`, formData.submissionLink);
+		setFormData({
+			...formData,
+			submissionLink: '',
+			validUrl: true,
+			showPopup: false
+		});
 	};
 	const onPopupClose = () => {
-		setPopup(false);
-		setValidEmail(true);
-		setPopup(false);
-		changeInput('');
+		setFormData({
+			...formData,
+			submissionLink: '',
+			validUrl: true,
+			showPopup: false
+		});
 	};
 	const dateString = props.date;
 	const dateObject = DateTime.fromISO(dateString);
@@ -55,14 +62,14 @@ function Assignment(props) {
 	const dueDatePassed = true;
 	return (
 		<>
-			{showPopup && (
+			{formData.showPopup && (
 				<Popup
 					placeHolder="Submission link "
 					onPopupClose={onPopupClose}
-					validEmail={validEmail}
-					emailError={emailError}
+					validUrl={formData.validUrl}
+					urlError={formData.urlError}
 					onSubmit={onSubmit}
-					value={submissionLink}
+					value={formData.submissionLink}
 					onChange={onInputChange}
 				/>
 			)}
