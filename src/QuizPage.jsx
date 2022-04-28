@@ -1,12 +1,27 @@
-import React from 'react';
-import { Link} from "react-router-dom";
 
-function QuizPage() {
- 
-  return (<>
-   <div className=" flex items-center justify-center h-screen w-screen bg-yellow-300"> Quiz page<Link to="/lectures">Go Back</Link></div>
-            
-  </> );
+import React from 'react'
+
+function QuizPage(){
+  return(
+    <div>
+    <div className="bg-gray-800  h-32">
+ <div className="  p-2 border-b-2 border-rose-700  ">
+ <h1 className="text-white text-2xl p-2 font-bold    "> Code Yogi
+ </h1>
+   
+ </div>
+      
+      <h1 className="text-white text-2xl p-2"> Welcome, RISHABH</h1>
+      </div>
+      
+      <div className="flex  justify-center items-center bg-red-200 h-screen">
+      <h1>No active questions</h1>
+        
+    </div>
+    
+    
+    
+    </div>
+  );
 }
-
 export default QuizPage;

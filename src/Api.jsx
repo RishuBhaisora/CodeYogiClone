@@ -1,8 +1,17 @@
 import axios from 'axios';
 import React from 'react';
+
+
 const BASE_URL = `https://api.codeyogi.io/`;
 
-export const getLectures = axios.get(BASE_URL + 'batches/1/sessions', {
+export const getLectures = async()=>{
+ const response = await axios.get(BASE_URL + 'batches/1/sessions', {withCredentials: true}); 
+  const users =response.data
+  saveData("lecture",users)
+  return users;
+}
+
+export const getProfile = axios.get(BASE_URL + 'me', {
 	withCredentials: true
 });
 
