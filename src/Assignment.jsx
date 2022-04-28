@@ -9,11 +9,11 @@ import { saveData, getSavedData, putAssignment } from './Api';
 import { useForm } from './urlForm';
 
 function Assignment(props) {
-	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
+	const savedSubmissionLink = getSavedData(`Assignment`) || [props.href];
 
 	const onSubmit = event => {
 		putAssignment(props.detailId, formData.submissionLink);
-		saveData(`${props.detailId}`, formData.submissionLink);
+		saveData(`Assignment`, formData.submissionLink);
 	};
 
 	const [

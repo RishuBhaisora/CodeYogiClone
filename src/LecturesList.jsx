@@ -2,8 +2,7 @@ import React from 'react';
 import Lecture from './Lecture';
 import axios from 'axios';
 import { DateTime } from 'luxon';
-import { getLectures } from './Api';
-import { getSavedData } from './Api';
+import { getSavedData,getLectures } from './Api';
 
 function LecturesList() {
 	const savedAssignments = getSavedData('lectures') || [];

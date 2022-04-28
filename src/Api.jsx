@@ -1,33 +1,38 @@
 import axios from 'axios';
 import React from 'react';
 
-
 const BASE_URL = `https://api.codeyogi.io/`;
 
-export const getLectures = async()=>{
- const response = await axios.get(BASE_URL + 'batches/1/sessions', {withCredentials: true}); 
-  const users =response.data
-  saveData("lecture",users)
-  return users;
-}
-
-export const getProfile = axios.get(BASE_URL + 'me', {
-	withCredentials: true
-});
-
-
-export const getAssignments = axios.get(BASE_URL + 'batches/1/assignments', {
-	withCredentials: true
-});
-
-
-export const details = data => {
-	const token = axios.get( BASE_URL + `assignments/${data}`, {
+export const getLectures = async () => {
+	const response = await axios.get(BASE_URL + 'batches/1/sessions', {
 		withCredentials: true
-	})
-	return token.then(response => {
-		return response;
 	});
+	const users = response.data;
+	saveData('lecture', users);
+	return users;
+};
+
+export const getProfile = async () => {
+	const response = await axios.get(BASE_URL + 'me', { withCredentials: true });
+	const users = response.data.data;
+	return users;
+};
+
+export const getAssignments = async () => {
+	const response = await axios.get(BASE_URL + 'batches/1/assignments', {
+		withCredentials: true
+	});
+	const users = response.data;
+	saveData('assignments', users);
+	return users;
+};
+export const details = async data => {
+	const response = await axios.get(BASE_URL + `assignments/${data}`, {
+		withCredentials: true
+	});
+	const users = response.data;
+	saveData('details', users);
+	return users;
 };
 
 export const saveData = (key, value) => {

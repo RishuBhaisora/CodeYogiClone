@@ -10,8 +10,9 @@ const ProfilePage = () => {
 	const [profileData, setProfileData] = React.useState({});
   
 	React.useEffect(() => {
-		getProfile.then(response => {
-		setProfileData(response.data.data);
+		const promise=getProfile()
+    promise.then(response => {
+		setProfileData(response);
     setShow(true)  
       
 		});

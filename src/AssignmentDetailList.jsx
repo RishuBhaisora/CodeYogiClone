@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import AssignmentDetail from './AssignmentDetail';
-import { saveData, getSavedData, details } from './Api';
+import {  getSavedData, details } from './Api';
 
 function AssignmentDetailList() {
 	const savedAssignments = getSavedData('details') || [];
@@ -12,11 +12,11 @@ function AssignmentDetailList() {
 	const numberParams = +stringParams.id;
 
 	React.useEffect(() => {
-		details(numberParams).then(response => {
-			saveData('details', response.data);
-			setData(response.data);
-			setHref(response.data.submissions[0].submission_link);
-			console.log(response.data);
+		const promise = details(numberParams)
+      promise.then(response => {
+			setData(response);
+			setHref(response.submissions[0].submission_link);
+			console.log(response);
 		});
 	}, []);
 

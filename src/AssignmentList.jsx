@@ -1,18 +1,17 @@
 import React from 'react';
 import Assignment from './Assignment';
 import axios from 'axios';
-import { saveData, getSavedData, getAssignments } from './Api';
+import { getSavedData, getAssignments } from './Api';
 
 function AssignmentList(props) {
 	const savedAssignments = getSavedData('assignments') || [];
 	const [assignmentData, setData] = React.useState(savedAssignments);
 
 	React.useEffect(() => {
-		getAssignments.then(response => {
-			saveData('assignments', response.data);
-			setData(response.data);
-
-			console.log(response.data);
+		const promise=getAssignments()
+      promise.then(response => {
+			setData(response);
+			console.log( response);
 		});
 	}, []);
 
