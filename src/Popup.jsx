@@ -15,7 +15,7 @@ function Popup(props) {
 				</div>
 				<div className="h-5">
 					{' '}
-					{!props.validUrl && (
+					{!props.validUrl && props.touched && (
 						<h2 className="text-red-400">({props.urlError})</h2>
 					)}
 				</div>
@@ -23,6 +23,9 @@ function Popup(props) {
 					<h1 className="font-bold text-gray-500 mt-3">Submission Link </h1>
 
 					<input
+            type={props.type ||""}
+            required
+            onBlur={props.onBlur}
 						placeholder={props.placeHolder}
 						value={props.value}
 						onChange={props.onChange}

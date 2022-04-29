@@ -7,29 +7,36 @@ import { DateTime } from 'luxon';
 import Popup from './Popup';
 import { saveData, getSavedData, putAssignment } from './Api';
 import { useForm } from './urlForm';
+import { string } from 'yup';
 
 function Assignment(props) {
-	const savedSubmissionLink = getSavedData(`Assignment`) || [props.href];
-
+  
+	const savedSubmissionLink = getSavedData(`Link`) || [props.href];
+   const urlValidator = string().url('URL is not valid ');
+  
 	const onSubmit = event => {
-		putAssignment(props.detailId, formData.submissionLink);
-		saveData(`Assignment`, formData.submissionLink);
+		putAssignment(props.detailId, values.submissionLink);
+		saveData(`Link`, values.submissionLink);
 	};
 
-	const [
+	const {
 		formData,
+    touched,
+    values,
 		onInputChange,
 		onShowPopup,
 		onPopupClose,
-		onSubmission
-	] = useForm(
+		onSubmission,
+    handleBlur,
+      } = useForm(
 		{
 			submissionLink: '',
-			urlError: '',
+			
+		},{urlError: '',
 			validUrl: true,
-			showPopup: false
-		},
-		onSubmit
+			showPopup: false},
+		onSubmit,
+    urlValidator
 	);
 
 	let navigate = useNavigate();
@@ -43,12 +50,15 @@ function Assignment(props) {
 		<>
 			{formData.showPopup && (
 				<Popup
+          type="text"
 					placeHolder="Submission link "
 					onPopupClose={onPopupClose}
+          touched={touched}
 					validUrl={formData.validUrl}
 					urlError={formData.urlError}
+          onBlur={handleBlur}
 					onSubmit={onSubmission}
-					value={formData.submissionLink}
+					value={values.submissionLink}
 					onChange={onInputChange}
 				/>
 			)}

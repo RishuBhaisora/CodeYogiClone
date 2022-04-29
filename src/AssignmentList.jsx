@@ -1,7 +1,7 @@
 import React from 'react';
 import Assignment from './Assignment';
 import axios from 'axios';
-import { getSavedData, getAssignments } from './Api';
+import { getSavedData,saveData, getAssignments } from './Api';
 
 function AssignmentList(props) {
 	const savedAssignments = getSavedData('assignments') || [];
@@ -11,6 +11,7 @@ function AssignmentList(props) {
 		const promise=getAssignments()
       promise.then(response => {
 			setData(response);
+        	saveData('assignments', response);
 			console.log( response);
 		});
 	}, []);

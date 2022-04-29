@@ -11,27 +11,31 @@ import { useForm } from './urlForm';
 
 function AssignmentDetail(props) {
 	const savedSubmissionLink = getSavedData(`Details`) || [props.href];
-
+ const urlValidator = string().url('URL is not valid ');
+  
 	const onSubmit = () => {
-		putAssignment(props.detailId, formData.submissionLink);
-		saveData(`Details`, formData.submissionLink);
+		putAssignment(props.detailId, values.submissionLink);
+		saveData(`Details`, values.submissionLink);
 	};
-  const [
+ const {
 		formData,
+    touched,
+    values,
 		onInputChange,
 		onShowPopup,
 		onPopupClose,
-		onSubmission
-	] = useForm(
+		onSubmission,
+    handleBlur,
+      } = useForm(
 		{
 			submissionLink: '',
-			urlError: '',
+			
+		},{urlError: '',
 			validUrl: true,
-			showPopup: false
-		},
-		onSubmit
+			showPopup: false},
+		onSubmit,
+    urlValidator
 	);
-
 
 	return (
 		<div className="rounded-lg p-4 m-4 bg-white space-y-4    shadow-2xl ">
@@ -43,8 +47,10 @@ function AssignmentDetail(props) {
 					onPopupClose={onPopupClose}
 					assignNum={props.detailId}
 					onSubmit={onSubmission}
-					value={formData.submissionLink}
+					value={values.submissionLink}
 					onChange={onInputChange}
+          touched={touched}
+          onBlur={handleBlur}
 				/>
 			)}
 			<h1 className="text-2xl p-2 border-b-2 font-black ">Assignment Detail</h1>

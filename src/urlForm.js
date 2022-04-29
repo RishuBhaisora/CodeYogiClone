@@ -1,30 +1,52 @@
 import React from "react"
-import { string } from 'yup';
 
-export const useForm = (innitialValue, onSubmit) => {
-  const [formData, setFormData] = React.useState(innitialValue)
+
+export const useForm = (innitialValue, innitialData, onSubmit, urlValidator) => {
+  const [values, setValues] = React.useState(innitialValue)
+  const [formData, setFormData] = React.useState(innitialData)
+  const [touched, setTouched] = React.useState(false)
+
+
 
   const onSubmission = () => {
     event.preventDefault();
-    const urlValidator = string().url('URL is not valid ');
+
     try {
-      urlValidator.validateSync(formData.submissionLink);
+      urlValidator.validateSync(values.submissionLink);
     } catch (e) {
       setFormData({ ...formData, urlError: e.message, validUrl: false });
-      console.log(e.message);
+      setTouched(true);
+
       return;
     }
     onSubmit()
     setFormData({
       ...formData,
-      submissionLink: '',
       validUrl: true,
       showPopup: false
     });
-
+    setValues({ ...values, submissionLink: '' });
+    setTouched(false);
   }
+  const handleBlur = () => {
+
+    setTouched(true);
+
+  };
+
   const onInputChange = event => {
-    setFormData({ ...formData, submissionLink: event.target.value });
+    setValues({ ...values, submissionLink: event.target.value });
+
+    try {
+      urlValidator.validateSync(values.submissionLink);
+      setFormData({ ...formData, validUrl: true });
+      setTouched(false);
+    } catch (e) {
+      setFormData({ ...formData, urlError: e.message, validUrl: false });
+      console.log(e.message);
+      return;
+    }
+
   };
   const onShowPopup = () => {
     setFormData({ ...formData, showPopup: true });
@@ -32,11 +54,12 @@ export const useForm = (innitialValue, onSubmit) => {
   const onPopupClose = () => {
     setFormData({
       ...formData,
-      submissionLink: '',
       validUrl: true,
       showPopup: false
     });
+    setValues({ ...values, submissionLink: '' });
+    setTouched(false);
   };
 
-  return [formData, onInputChange, onShowPopup, onPopupClose, onSubmission]
+  return { formData, onInputChange, onShowPopup, onPopupClose, onSubmission, touched, values, handleBlur }
 }

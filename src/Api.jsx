@@ -23,7 +23,6 @@ export const getAssignments = async () => {
 		withCredentials: true
 	});
 	const users = response.data;
-	saveData('assignments', users);
 	return users;
 };
 export const details = async data => {
