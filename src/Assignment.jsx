@@ -11,12 +11,12 @@ import { string } from 'yup';
 
 function Assignment(props) {
   
-	const savedSubmissionLink = getSavedData(`Link`) || [props.href];
+	const savedSubmissionLink =  getSavedData(`${props.detailId}`) || [props.href];
    const urlValidator = string().url('URL is not valid ');
   
 	const onSubmit = event => {
 		putAssignment(props.detailId, values.submissionLink);
-		saveData(`Link`, values.submissionLink);
+	
 	};
 
 	const {

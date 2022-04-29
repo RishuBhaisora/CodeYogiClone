@@ -44,6 +44,7 @@ export const getSavedData = key => {
 };
 
 export const putAssignment = (id, submissionLink) => {
+  saveData(`${id}`,submissionLink);
 	axios.put(
 		BASE_URL + `assignment/${id}/submit`,
 		{ submissionLink },

@@ -10,12 +10,12 @@ import { saveData, getSavedData, putAssignment } from './Api';
 import { useForm } from './urlForm';
 
 function AssignmentDetail(props) {
-	const savedSubmissionLink = getSavedData(`Details`) || [props.href];
+	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
  const urlValidator = string().url('URL is not valid ');
   
 	const onSubmit = () => {
 		putAssignment(props.detailId, values.submissionLink);
-		saveData(`Details`, values.submissionLink);
+		
 	};
  const {
 		formData,
