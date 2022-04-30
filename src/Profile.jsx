@@ -5,7 +5,7 @@ import { Formik , Form } from 'formik';
 import { DateTime } from 'luxon';
 import { object, string,number } from 'yup';
 
-const Profile = ({ profileData }) => {
+const Profile = ({ profileData,setMessage }) => {
   
 	const validationSchema = object().shape({
     first_name: string().required().max(12),
@@ -16,7 +16,8 @@ const Profile = ({ profileData }) => {
     branch: string().required(),
   })
 	 const onSubmit=()=>{
-     console.log("tycf")
+     console.log("success")
+     setMessage("Profile Added Successfully")
    }
 	const dateString = profileData.date_of_birth;
 	const dateObject = DateTime.fromISO(dateString);

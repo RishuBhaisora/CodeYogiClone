@@ -8,33 +8,38 @@ import { DateTime } from 'luxon';
 import { string } from 'yup';
 import { saveData, getSavedData, putAssignment } from './Api';
 import { useForm } from './urlForm';
+import { useContext } from 'react';
+import AlertContext from './AlertContext';
 
 function AssignmentDetail(props) {
 	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
- const urlValidator = string().url('URL is not valid ');
-  
+	const urlValidator = string().url('URL is not valid ');
+	const { setMessage } = useContext(AlertContext);
+
 	const onSubmit = () => {
+		setMessage('Submitted Successfully');
 		putAssignment(props.detailId, values.submissionLink);
-		
 	};
- const {
+	const {
 		formData,
-    touched,
-    values,
+		touched,
+		values,
 		onInputChange,
 		onShowPopup,
 		onPopupClose,
 		onSubmission,
-    handleBlur,
-      } = useForm(
+		handleBlur
+	} = useForm(
 		{
-			submissionLink: '',
-			
-		},{urlError: '',
+			submissionLink: ''
+		},
+		{
+			urlError: '',
 			validUrl: true,
-			showPopup: false},
+			showPopup: false
+		},
 		onSubmit,
-    urlValidator
+		urlValidator
 	);
 
 	return (
@@ -49,8 +54,8 @@ function AssignmentDetail(props) {
 					onSubmit={onSubmission}
 					value={values.submissionLink}
 					onChange={onInputChange}
-          touched={touched}
-          onBlur={handleBlur}
+					touched={touched}
+					onBlur={handleBlur}
 				/>
 			)}
 			<h1 className="text-2xl p-2 border-b-2 font-black ">Assignment Detail</h1>

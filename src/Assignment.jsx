@@ -8,14 +8,19 @@ import Popup from './Popup';
 import { saveData, getSavedData, putAssignment } from './Api';
 import { useForm } from './urlForm';
 import { string } from 'yup';
+import {useContext} from "react"
+import  AlertContext  from './AlertContext';
+
 
 function Assignment(props) {
   
 	const savedSubmissionLink =  getSavedData(`${props.detailId}`) || [props.href];
    const urlValidator = string().url('URL is not valid ');
+  const {setMessage} =useContext(AlertContext)  
   
 	const onSubmit = event => {
 		putAssignment(props.detailId, values.submissionLink);
+    setMessage("Submitted Successfully")
 	
 	};
 
