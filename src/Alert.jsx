@@ -1,20 +1,13 @@
 import React from 'react';
 import { GiCancel } from 'react-icons/gi';
-import {useContext} from "react"
-import  AlertContext  from './AlertContext';
 import cn from "classnames"
 
-
-function Alert() {
+const Alert =( {alert,removeAlert})=> {
+  console.log(alert)
   
-  const {alert,setAlert} =useContext(AlertContext)
-  if(!alert){
-    return <></>
-  }
- 
- const alertTheme=cn("fixed right-1 p-5 rounded-md  text-white text-xl",{
+ const alertTheme=cn("mt-2 p-3 rounded-xl flex space-x-2 text-white text-xl",{
    "bg-red-400":alert.type==='error',
-   " bg-green-400":alert.type===""||"success"
+   " bg-green-400":alert.type==="success"
  })
   
 	return (
@@ -22,10 +15,10 @@ function Alert() {
 			{ alert.message &&
 				<div className={alertTheme}>
 					<span> {alert.message}</span>
-          <span  className="fixed right-1 top-1">
+          <span  className="">
 					<GiCancel
 						className=" text-xl"
-						onClick={() => setAlert(null)}
+						onClick={() => removeAlert()}
 					/></span>
 				</div>
 			}

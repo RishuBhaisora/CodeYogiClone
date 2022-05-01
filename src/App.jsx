@@ -8,17 +8,27 @@ import QuizPage from './QuizPage';
 import AssignmentDetailList from './AssignmentDetailList';
 import ProfilePage from './ProfilePage';
 import UserProfileList from './UserProfileList';
-import  AlertContext  from './AlertContext';
-import Alert from './Alert';
+import AlertContext from './AlertContext';
+import Alerts from './Alerts';
 
 function App() {
+	const [alerts, setAlert] = React.useState([]);
   
-	const [alert, setAlert] = React.useState(null);
+
+	const showAlert = (message, type="success" , dissmiss = 3) => {
+		setAlert([...alerts,{message, type}] );
+		dissmiss &&
+			setTimeout(() => {
+				removeAlert();
+			}, dissmiss * 1000);
+	};
+	const removeAlert = () => {
+		setAlert([]);
+	};
+
 	return (
-		<AlertContext.Provider
-			value={{ alert,setAlert }}
-		>
-			<Alert />
+		<AlertContext.Provider value={{ alerts, showAlert, removeAlert}}>
+			<Alerts />
 			<BrowserRouter>
 				<Routes>
 					<Route path="quiz" element={<QuizPage />} />

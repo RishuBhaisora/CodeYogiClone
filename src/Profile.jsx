@@ -5,7 +5,7 @@ import { Formik , Form } from 'formik';
 import { DateTime } from 'luxon';
 import { object, string,number } from 'yup';
 
-const Profile = ({ profileData , setAlert }) => {
+const Profile = ({ profileData , showAlert }) => {
   
 	const validationSchema = object().shape({
     first_name: string().required().max(12),
@@ -16,11 +16,8 @@ const Profile = ({ profileData , setAlert }) => {
     branch: string().required(),
   })
 	 const onSubmit=()=>{
-    console.log("success")
-    setAlert({message:"Submitted Successfully"}) 
-    setTimeout(()=>{
-    setAlert("") 
-    },2000)
+    console.log("success") 
+    showAlert("Updated Successfully") 
    }
 	const dateString = profileData.date_of_birth;
 	const dateObject = DateTime.fromISO(dateString);

@@ -5,7 +5,7 @@ import { DateTime } from 'luxon';
 import { getSavedData,getLectures } from './Api';
 
 function LecturesList() {
-	const savedAssignments = getSavedData('lectures') || [];
+	const savedAssignments = getSavedData('lecture') || [];
 	const [lectureData, setData] = React.useState(savedAssignments);
 
 	React.useEffect(() => {
