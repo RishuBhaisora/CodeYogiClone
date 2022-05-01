@@ -3,16 +3,19 @@ import Lecture from './Lecture';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import { getSavedData,getLectures } from './Api';
+import { useContext } from 'react';
+import AlertContext from './AlertContext';
+
 
 function LecturesList() {
 	const savedAssignments = getSavedData('lecture') || [];
 	const [lectureData, setData] = React.useState(savedAssignments);
-
+  const { showAlert } = useContext(AlertContext);
+  
 	React.useEffect(() => {
-		const users = getLectures();
+		const users = getLectures({showAlert});
 		users.then(response => {
-      console.log(response)
-			setData(response);
+		setData(response);
 		});
 	}, []);
 

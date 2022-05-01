@@ -1,20 +1,26 @@
 import React from 'react';
 import Assignment from './Assignment';
 import axios from 'axios';
-import { getSavedData,saveData, getAssignments } from './Api';
+import { getSavedData, saveData, getAssignments } from './Api';
+import { useContext } from 'react';
+import AlertContext from './AlertContext';
+
+
 
 function AssignmentList(props) {
 	const savedAssignments = getSavedData('assignments') || [];
 	const [assignmentData, setData] = React.useState(savedAssignments);
+  const { showAlert } = useContext(AlertContext);
 
 	React.useEffect(() => {
-		const promise=getAssignments()
-      promise.then(response => {
+		const promise = getAssignments({showAlert});
+		promise.then(response => {
 			setData(response);
-        	saveData('assignments', response);
-			console.log( response);
-		});
+			saveData('assignments', response);
+		})
+   
 	}, []);
+	
 
 	return (
 		<div className="m-10 bg-gray-100 p-4 h-fit w-full rounded-md">

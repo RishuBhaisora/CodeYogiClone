@@ -3,16 +3,20 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import AssignmentDetail from './AssignmentDetail';
 import {  getSavedData, details } from './Api';
+import { useContext } from 'react';
+import AlertContext from './AlertContext';
+
 
 function AssignmentDetailList() {
 	const savedAssignments = getSavedData('details') || [];
 	const [detailsData, setData] = React.useState(savedAssignments);
 	const [href, setHref] = React.useState('');
 	const stringParams = useParams();
-	const numberParams = +stringParams.id;
+	const numberParams = +stringParams.id
+  const { showAlert } = useContext(AlertContext);
 
 	React.useEffect(() => {
-		const promise = details(numberParams)
+		const promise = details(numberParams,{showAlert})
       promise.then(response => {
 			setData(response);
 			setHref(response.submissions[0].submission_link);

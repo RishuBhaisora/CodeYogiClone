@@ -10,27 +10,31 @@ import ProfilePage from './ProfilePage';
 import UserProfileList from './UserProfileList';
 import AlertContext from './AlertContext';
 import Alerts from './Alerts';
-import {uniqueId} from "lodash"
+import { uniqueId } from 'lodash';
+
+
 function App() {
 	const [alerts, setAlert] = React.useState([]);
-  
-
-	const showAlert = (message, type="success" , dissmiss = 3) => {
-    const Id =uniqueId()
-    const alert={message, type,Id}
-		setAlert([...alerts,alert] );
+console.log(alerts)
+	const showAlert = (message, type = 'success', dissmiss = 3) => {
+		const Id = uniqueId();
+		const alert = { message, type, Id };
+   
+		setAlert([...alerts, alert]);
 		dissmiss &&
 			setTimeout(() => {
 				removeAlert(alert);
 			}, dissmiss * 1000);
 	};
-	const removeAlert = (alert) => {
-		setAlert((newOne)=>newOne.filter(a=> a!==alert))
+	const removeAlert = alert => {
+    console.log(alert)
+		setAlert(newOne => newOne.filter(a => a.Id !== alert.Id));
 	};
 
 	return (
-		<AlertContext.Provider value={{ alerts, showAlert, removeAlert}}>
+		<AlertContext.Provider value={{ alerts, showAlert, removeAlert }}>
 			<Alerts />
+		
 			<BrowserRouter>
 				<Routes>
 					<Route path="quiz" element={<QuizPage />} />

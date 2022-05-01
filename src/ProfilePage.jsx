@@ -6,13 +6,14 @@ import {useContext} from "react"
 import  AlertContext  from './AlertContext';
   
 
+
 const ProfilePage = () => {
   const [show,setShow]=React.useState(false);
 	const [profileData, setProfileData] = React.useState({});
   const {showAlert} =useContext(AlertContext)
   
 	React.useEffect(() => {
-		const promise=getProfile()
+		const promise=getProfile({showAlert})
     promise.then(response => {
 		setProfileData(response);
     setShow(true)  
