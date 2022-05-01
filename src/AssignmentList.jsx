@@ -8,6 +8,7 @@ import AlertContext from './AlertContext';
 
 
 function AssignmentList(props) {
+ 
 	const savedAssignments = getSavedData('assignments') || [];
 	const [assignmentData, setData] = React.useState(savedAssignments);
   const { showAlert } = useContext(AlertContext);
@@ -18,14 +19,17 @@ function AssignmentList(props) {
 			setData(response);
 			saveData('assignments', response);
 		})
-   
+    showAlert("Assignments Loaded")
 	}, []);
 	
 
 	return (
+   
 		<div className="m-10 bg-gray-100 p-4 h-fit w-full rounded-md">
+       
 			<h1 className="text-2xl pl-3 pt-2 font-black ">Assignment List</h1>
 			{assignmentData.map(d => (
+      
 				<Assignment
 					key={d.id}
 					detailId={d.id}

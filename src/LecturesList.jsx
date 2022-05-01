@@ -17,6 +17,8 @@ function LecturesList() {
 		users.then(response => {
 		setData(response);
 		});
+    console.log("hii")
+     showAlert("Lectures Loaded")
 	}, []);
 
 	return (

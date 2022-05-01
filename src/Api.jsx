@@ -9,7 +9,7 @@ try {	const response = await axios.get(BASE_URL + 'batches/1/sessions', {
 	});
 	const users = response.data;
 	saveData('lecture', users);
-  showAlert("Lectures Loaded")
+ 
 	return users;
   } catch {
 		showAlert('Lectures Loading Failed', 'error', 5);
@@ -33,7 +33,6 @@ export const getAssignments = async ({ showAlert}) => {
 		const response = await axios.get(BASE_URL + 'batches/1/assignments', {
 			withCredentials: true
 		});
-		showAlert("Assignments Loaded")
 		const users = response.data;
 
 		return users;
