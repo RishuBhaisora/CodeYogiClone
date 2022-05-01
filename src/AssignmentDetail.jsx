@@ -5,7 +5,7 @@ import Popup from './Popup';
 import axios from 'axios';
 import MDEditor from '@uiw/react-md-editor';
 import { DateTime } from 'luxon';
-import urlSubmission from "./submission"
+import urlSubmission from "./urlSubmission";
 
 function AssignmentDetail(props) {
  

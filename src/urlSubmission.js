@@ -7,12 +7,15 @@ import  AlertContext  from './AlertContext';
 const urlSubmission =(props)=>{
   const savedSubmissionLink =  getSavedData(`${props.detailId}`) || [props.href];
    const urlValidator = string().url('URL is not valid ');
-  const {setMessage} =useContext(AlertContext)  
+  const {setAlert} =useContext(AlertContext)  
   
 	const onSubmit = () => {
 		putAssignment(props.detailId, values.submissionLink);
-    setMessage("Submitted Successfully")
-	
+    setAlert({message:"Submitted Successfully"}) 
+    setTimeout(()=>{
+    setAlert("") 
+    },2000)
+
 	};
 
   

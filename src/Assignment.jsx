@@ -5,7 +5,7 @@ import { VscLinkExternal } from 'react-icons/vsc';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
-import urlSubmission from "./submission"
+import urlSubmission from "./urlSubmission"
 
 
 function Assignment(props) {

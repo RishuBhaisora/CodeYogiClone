@@ -9,7 +9,7 @@ import  AlertContext  from './AlertContext';
 const ProfilePage = () => {
   const [show,setShow]=React.useState(false);
 	const [profileData, setProfileData] = React.useState({});
-  const {setMessage} =useContext(AlertContext)
+  const {setAlert} =useContext(AlertContext)
   
 	React.useEffect(() => {
 		const promise=getProfile()
@@ -23,7 +23,7 @@ const ProfilePage = () => {
 	return (
    <>
      {!show && ( <FiLoader className="w-20 h-20 mx-auto my-auto "></FiLoader>)} 
-    {show && (<Profile profileData={profileData} setMessage={setMessage}  ></Profile>)}
+    {show && (<Profile profileData={profileData} setAlert={setAlert}  ></Profile>)}
    </>
 	);
 };

@@ -13,10 +13,10 @@ import Alert from './Alert';
 
 function App() {
   
-	const [alertMessage, setAlertMessage] = React.useState('');
+	const [alert, setAlert] = React.useState(null);
 	return (
 		<AlertContext.Provider
-			value={{ message: alertMessage, setMessage: setAlertMessage }}
+			value={{ alert,setAlert }}
 		>
 			<Alert />
 			<BrowserRouter>
