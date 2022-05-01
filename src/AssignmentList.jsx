@@ -18,6 +18,7 @@ function AssignmentList(props) {
 		promise.then(response => {
 			setData(response);
 			saveData('assignments', response);
+      console.log(response)
 		})
     showAlert("Assignments Loaded")
 	}, []);
