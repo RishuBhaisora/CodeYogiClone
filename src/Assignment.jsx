@@ -5,44 +5,12 @@ import { VscLinkExternal } from 'react-icons/vsc';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
-import { saveData, getSavedData, putAssignment } from './Api';
-import { useForm } from './urlForm';
-import { string } from 'yup';
-import {useContext} from "react"
-import  AlertContext  from './AlertContext';
+import urlSubmission from "./submission"
 
 
 function Assignment(props) {
   
-	const savedSubmissionLink =  getSavedData(`${props.detailId}`) || [props.href];
-   const urlValidator = string().url('URL is not valid ');
-  const {setMessage} =useContext(AlertContext)  
-  
-	const onSubmit = event => {
-		putAssignment(props.detailId, values.submissionLink);
-    setMessage("Submitted Successfully")
-	
-	};
-
-	const {
-		formData,
-    touched,
-    values,
-		onInputChange,
-		onShowPopup,
-		onPopupClose,
-		onSubmission,
-    handleBlur,
-      } = useForm(
-		{
-			submissionLink: '',
-			
-		},{urlError: '',
-			validUrl: true,
-			showPopup: false},
-		onSubmit,
-    urlValidator
-	);
+	const {Form_Data,savedSubmissionLink}=urlSubmission(props)
 
 	let navigate = useNavigate();
 
@@ -53,18 +21,18 @@ function Assignment(props) {
 	const dueDatePassed = true;
 	return (
 		<>
-			{formData.showPopup && (
+			{Form_Data.formData.showPopup && (
 				<Popup
           type="text"
 					placeHolder="Submission link "
-					onPopupClose={onPopupClose}
-          touched={touched}
-					validUrl={formData.validUrl}
-					urlError={formData.urlError}
-          onBlur={handleBlur}
-					onSubmit={onSubmission}
-					value={values.submissionLink}
-					onChange={onInputChange}
+					onPopupClose={Form_Data.onPopupClose}
+          touched={Form_Data.touched}
+					validUrl={Form_Data.formData.validUrl}
+					urlError={Form_Data.formData.urlError}
+          onBlur={Form_Data.handleBlur}
+					onSubmit={Form_Data.onSubmission}
+					value={Form_Data.values.submissionLink}
+					onChange={Form_Data.onInputChange}
 				/>
 			)}
 			<div className=" p-4 m-4 bg-white space-y-4 shadow-2xl rounded-lg  shadow-2xl grow ">
@@ -94,7 +62,7 @@ function Assignment(props) {
 					</div>
 				</div>
 				<div className="flex justify-between  ">
-					<div onClick={onShowPopup} className=" p-4 flex ">
+					<div onClick={Form_Data.onShowPopup} className=" p-4 flex ">
 						<div className="text-green-700 mt-2 text-2xl">
 							<IoIosCheckmarkCircleOutline />
 						</div>

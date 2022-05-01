@@ -5,57 +5,26 @@ import Popup from './Popup';
 import axios from 'axios';
 import MDEditor from '@uiw/react-md-editor';
 import { DateTime } from 'luxon';
-import { string } from 'yup';
-import { saveData, getSavedData, putAssignment } from './Api';
-import { useForm } from './urlForm';
-import { useContext } from 'react';
-import AlertContext from './AlertContext';
+import urlSubmission from "./submission"
 
 function AssignmentDetail(props) {
-	const savedSubmissionLink = getSavedData(`${props.detailId}`) || [props.href];
-	const urlValidator = string().url('URL is not valid ');
-	const { setMessage } = useContext(AlertContext);
-
-	const onSubmit = () => {
-		setMessage('Submitted Successfully');
-		putAssignment(props.detailId, values.submissionLink);
-	};
-	const {
-		formData,
-		touched,
-		values,
-		onInputChange,
-		onShowPopup,
-		onPopupClose,
-		onSubmission,
-		handleBlur
-	} = useForm(
-		{
-			submissionLink: ''
-		},
-		{
-			urlError: '',
-			validUrl: true,
-			showPopup: false
-		},
-		onSubmit,
-		urlValidator
-	);
+ 
+	const {Form_Data,savedSubmissionLink}=urlSubmission(props)
 
 	return (
 		<div className="rounded-lg p-4 m-4 bg-white space-y-4    shadow-2xl ">
-			{formData.showPopup && (
+			{Form_Data.formData.showPopup && (
 				<Popup
 					placeHolder="Submission link "
-					validUrl={formData.validUrl}
-					urlError={formData.urlError}
-					onPopupClose={onPopupClose}
+					validUrl={Form_Data.formData.validUrl}
+					urlError={Form_Data.formData.urlError}
+					onPopupClose={Form_Data.onPopupClose}
 					assignNum={props.detailId}
-					onSubmit={onSubmission}
-					value={values.submissionLink}
-					onChange={onInputChange}
-					touched={touched}
-					onBlur={handleBlur}
+					onSubmit={Form_Data.onSubmission}
+					value={Form_Data.values.submissionLink}
+					onChange={Form_Data.onInputChange}
+					touched={Form_Data.touched}
+					onBlur={Form_Data.handleBlur}
 				/>
 			)}
 			<h1 className="text-2xl p-2 border-b-2 font-black ">Assignment Detail</h1>
@@ -85,7 +54,7 @@ function AssignmentDetail(props) {
 				</h1>
 			</div>
 			<div className="p-2 flex ">
-				<Button onClick={onShowPopup} input="Re-submit" />
+				<Button onClick={Form_Data.onShowPopup} input="Re-submit" />
 				<span className="grow" />
 				<a href={savedSubmissionLink} target="blank">
 					<h1 className="relative top-8 right-4 text-indigo-400 text-xl">
