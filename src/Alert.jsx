@@ -3,7 +3,6 @@ import { GiCancel } from 'react-icons/gi';
 import cn from "classnames"
 
 const Alert =( {alert,removeAlert})=> {
-  console.log(alert)
   
  const alertTheme=cn("mt-2 p-3 rounded-xl flex space-x-2 text-white text-xl",{
    "bg-red-400":alert.type==='error',
@@ -18,7 +17,7 @@ const Alert =( {alert,removeAlert})=> {
           <span  className="">
 					<GiCancel
 						className=" text-xl"
-						onClick={() => removeAlert()}
+						onClick={() => removeAlert(alert)}
 					/></span>
 				</div>
 			}

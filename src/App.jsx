@@ -10,20 +10,22 @@ import ProfilePage from './ProfilePage';
 import UserProfileList from './UserProfileList';
 import AlertContext from './AlertContext';
 import Alerts from './Alerts';
-
+import {uniqueId} from "lodash"
 function App() {
 	const [alerts, setAlert] = React.useState([]);
   
 
 	const showAlert = (message, type="success" , dissmiss = 3) => {
-		setAlert([...alerts,{message, type}] );
+    const Id =uniqueId()
+    const alert={message, type,Id}
+		setAlert([...alerts,alert] );
 		dissmiss &&
 			setTimeout(() => {
-				removeAlert();
+				removeAlert(alert);
 			}, dissmiss * 1000);
 	};
-	const removeAlert = () => {
-		setAlert([]);
+	const removeAlert = (alert) => {
+		setAlert((newOne)=>newOne.filter(a=> a!==alert))
 	};
 
 	return (
