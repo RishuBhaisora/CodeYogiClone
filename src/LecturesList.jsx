@@ -1,6 +1,5 @@
 import React from 'react';
 import Lecture from './Lecture';
-import axios from 'axios';
 import { DateTime } from 'luxon';
 import { getSavedData,getLectures } from './Api';
 import { useContext } from 'react';

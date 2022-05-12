@@ -5,12 +5,10 @@ import { VscLinkExternal } from 'react-icons/vsc';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
-import urlSubmission from "./urlSubmission"
-
+import urlSubmission from './urlSubmission';
 
 function Assignment(props) {
-  
-	const {Form_Data,savedSubmissionLink}=urlSubmission(props)
+	const { Form_Data, savedSubmissionLink } = urlSubmission(props);
 
 	let navigate = useNavigate();
 
@@ -23,13 +21,13 @@ function Assignment(props) {
 		<>
 			{Form_Data.formData.showPopup && (
 				<Popup
-          type="text"
+					type="text"
 					placeHolder="Submission link "
 					onPopupClose={Form_Data.onPopupClose}
-          touched={Form_Data.touched}
+					touched={Form_Data.touched}
 					validUrl={Form_Data.formData.validUrl}
 					urlError={Form_Data.formData.urlError}
-          onBlur={Form_Data.handleBlur}
+					onBlur={Form_Data.handleBlur}
 					onSubmit={Form_Data.onSubmission}
 					value={Form_Data.values.submissionLink}
 					onChange={Form_Data.onInputChange}
@@ -39,7 +37,7 @@ function Assignment(props) {
 				<div onClick={() => navigate(`/assignments/${props.detailId}/detail`)}>
 					<div className="flex text-xl font-bold space-x-4   ">
 						<h1 className="space-x-2">
-							#{props.count} {props.about}{' '}
+							#{props.count} {props.about}
 							<span className="text-gray-500">({dateHumanReadable})</span>
 						</h1>
 					</div>
@@ -55,7 +53,7 @@ function Assignment(props) {
 									<h1 className="  text-red-400 ">
 										(Submission will count as late now)
 									</h1>
-								)}{' '}
+								)}
 							</div>
 						</div>
 						<h1 className="text-green-800 font-bold text-xl">SUBMITTED</h1>
@@ -68,7 +66,7 @@ function Assignment(props) {
 						</div>
 						<div className="font-bold text-xl m-2 text-green-700 ">
 							Re-submit
-						</div>{' '}
+						</div>
 					</div>
 					<span className=" border-r-2 pl-[58px] border-gray-300" />
 					<a href={savedSubmissionLink} target="blank" className="p-4 flex ">
@@ -76,10 +74,9 @@ function Assignment(props) {
 							<VscLinkExternal />
 						</div>
 						<div className="text-xl font-bold m-2   underline text-indigo-400">
-							{' '}
 							See Your Submission
-						</div>{' '}
-					</a>{' '}
+						</div>
+					</a>
 				</div>
 			</div>
 		</>

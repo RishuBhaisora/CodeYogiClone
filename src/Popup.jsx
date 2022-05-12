@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Popup(props) {
 	
-	let navigate = useNavigate();
 	return (
     <form  onSubmit={props.onSubmit}  >
 		<div className=" h-screen w-full fixed top-0 p-32 left-0 bg-opacity-75 bg-gray-500 ">

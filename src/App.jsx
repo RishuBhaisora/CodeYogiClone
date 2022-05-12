@@ -16,7 +16,7 @@ import { uniqueId } from 'lodash';
 function App() {
 	const [alerts, setAlert] = React.useState([]);
 
-	const showAlert = (message, type = 'success', dissmiss =3) => {
+	const showAlert = (message, type = 'success', dissmiss =  2) => {
 		const Id = uniqueId();
 		const alert = { message, type, Id };
    

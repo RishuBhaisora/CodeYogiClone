@@ -34,6 +34,7 @@ export const getAssignments = async ({ showAlert}) => {
 			withCredentials: true
 		});
 		const users = response.data;
+    console.log(users)
 
 		return users;
 	} catch {

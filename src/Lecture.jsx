@@ -5,7 +5,6 @@ import { DateTime, Duration } from 'luxon';
 
 function Lecture({
 	created_at,
-	href,
 	topic,
 	start_time,
 	end_time,
@@ -38,6 +37,7 @@ function Lecture({
 			<div className="space-y-4">
 				<div className="pl-10 list-disc font-bold text-xl">
 					<MDEditor.Markdown className="markdown" source={topic} />
+          
 				</div>
 			</div>
 			<a

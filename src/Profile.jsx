@@ -1,24 +1,32 @@
 import React from 'react';
-import Input from './Input';
+import {FormikInput} from "./Input";
 import Button from './Button';
-import { Formik , Form } from 'formik';
+import { Formik, Form } from 'formik';
 import { DateTime } from 'luxon';
-import { object, string,number } from 'yup';
+import { object, string, number } from 'yup';
 
-const Profile = ({ profileData , showAlert }) => {
+const Profile = ({ profileData, showAlert }) => {
   
 	const validationSchema = object().shape({
-    first_name: string().required().max(12),
-    last_name: string().required().max(15),
-    email: string().required().email(),
-    year_of_pass_out: number().positive(),
-    phone_no: number().required().positive(),
-    branch: string().required(),
-  })
-	 const onSubmit=()=>{
-    console.log("success") 
-    showAlert("Updated Successfully") 
-   }
+		first_name: string()
+			.required()
+			.max(12),
+		last_name: string()
+			.required()
+			.max(15),
+		email: string()
+			.required()
+			.email(),
+		year_of_pass_out: number().positive(),
+		phone_no: number()
+			.required()
+			.positive(),
+		branch: string().required()
+	});
+	const onSubmit = () => {
+		console.log('success');
+		showAlert('Updated Successfully');
+	};
 	const dateString = profileData.date_of_birth;
 	const dateObject = DateTime.fromISO(dateString);
 	const dateHumanReadable = dateObject.toLocaleString(DateTime.DATE_SHORT);
@@ -35,8 +43,7 @@ const Profile = ({ profileData , showAlert }) => {
 	return (
 		<Formik
 			initialValues={initialValues}
-      onSubmit={onSubmit}
-			
+			onSubmit={onSubmit}
 			validationSchema={validationSchema}
 		>
 			<div className="bg-white w-full">
@@ -45,32 +52,51 @@ const Profile = ({ profileData , showAlert }) => {
 						Personal Detail
 					</h1>
 
-					<Input key="first_name" name="first_name" holder=" First name " />
+					<FormikInput
+						key="first_name"
+						id="first_name"
+						name="first_name"
+						holder=" First name "
+					/>
 
-					<Input key="last_name" name="last_name" holder=" last name  " />
+					<FormikInput
+						key="last_name"
+						id="last_name"
+						name="last_name"
+						holder=" last name  "
+					/>
 
-					<Input
+					<FormikInput
+						id={'email'}
 						key="email"
 						name="email"
 						type="email"
 						holder=" Email address "
 					/>
 
-					<Input key="branch" name="branch" holder="Institute Name " />
+					<FormikInput
+						key="branch"
+						id="branch"
+						name="branch"
+						holder="Institute Name "
+					/>
 
-					<Input
+					<FormikInput
+						id="year_of_pass_out"
 						key="year_of_pass_out"
 						name="year_of_pass_out"
 						holder=" Year off pass out  "
 					/>
 
-					<Input
+					<FormikInput
+						id="phone_number"
 						key="phone_no"
 						name="phone_no"
 						type="number"
-						holder=" Phone number "
+						holder="Phone number"
 					/>
-					<Input
+					<FormikInput
+						id="date_of_birth"
 						key="date_of_birth"
 						name="date_of_birth"
 						holder=" Date of birth "

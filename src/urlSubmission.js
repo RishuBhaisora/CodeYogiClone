@@ -5,6 +5,7 @@ import {useContext} from "react"
 import  AlertContext  from './AlertContext';
 
 const urlSubmission =(props)=>{
+  
   const savedSubmissionLink =  getSavedData(`${props.detailId}`) || [props.href];
    const urlValidator = string().url('URL is not valid ');
   const {showAlert} =useContext(AlertContext) 
