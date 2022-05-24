@@ -35,7 +35,7 @@ function AssignmentList(props) {
 					key={d.id}
 					detailId={d.id}
 					count={d.id}
-					href={d.submissions[0].submission_link}
+					href={d.submissions}
 					about={d.title}
 					date={d.created_at}
 					dueDate={d.due_date}

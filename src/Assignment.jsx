@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { VscLinkExternal } from 'react-icons/vsc';
-import axios from 'axios';
 import { DateTime } from 'luxon';
 import Popup from './Popup';
 import urlSubmission from './urlSubmission';
@@ -69,14 +68,14 @@ function Assignment(props) {
 						</div>
 					</div>
 					<span className=" border-r-2 pl-[58px] border-gray-300" />
-					<a href={savedSubmissionLink} target="blank" className="p-4 flex ">
+					{props.href[0] && <> <a href={savedSubmissionLink} target="blank" className="p-4 flex ">
 						<div className="text-indigo-400 mt-3 text-xl">
 							<VscLinkExternal />
 						</div>
 						<div className="text-xl font-bold m-2   underline text-indigo-400">
 							See Your Submission
 						</div>
-					</a>
+					</a></>}
 				</div>
 			</div>
 		</>
